@@ -1,0 +1,125 @@
+/**:
+  ros__parameters:
+    use_sim_time: true
+    cameras: [front/left, front/right, rear/left, rear/right, side/left, side/right]
+
+mission:
+  ros__parameters:
+    strategy: predictive
+    max_mission_time: 7200.0
+    target_delivered_kg: 0
+    pose_ready_std_m: 0.5
+
+    area_length: 6.0
+    area_width: 3.0
+    lane_spacing: 0.5
+    max_passes: 2
+    area_r_max: 13.0
+    area_grid: 1.0
+    area_clearance: 1.2
+
+    max_drive_slope_deg: 12.0
+
+    hopper_stage_dist: 3.0
+    hopper_standoff: 0.50
+    hopper_turn_dist: 1.0
+    approach_speed: 0.08
+    min_haul_kg: 1.0
+
+    v_max: 0.25
+    w_max: 0.6
+    lookahead: 0.6
+    inflation: 0.55
+    dig_speed: 0.05
+    dig_rate_kg_s: 1.5
+    dig_arm_deg: -10.0
+    transport_arm_deg: 55.0
+    dump_arm_deg: 45.0
+    drum_offset: 0.59
+    drum_capacity_kg: 15.0
+    dump_rate_kg_s: 3.0
+
+    antenna_side_gap: 0.10
+    rover_half_width: 0.267
+    antenna_charger_side: left
+    antenna_stage_dist: 3.0
+    charge_power_w: 1000.0
+    soc_return: 0.35
+    soc_full: 0.95
+    soc_reserve: 0.10
+    energy_margin: 1.3
+
+clahe:
+  ros__parameters:
+    enabled: true
+    clip: 4.0
+    tiles: 8
+
+apriltag:
+  ros__parameters:
+    family: 36h11
+    qos_profile: sensor_data
+    max_hamming: 0
+    detector:
+      threads: 2
+      decimate: 1.0
+      blur: 0.0
+      refine: true
+      sharpening: 0.25
+      debug: false
+
+tag_localizer:
+  ros__parameters:
+    base_frame: base_link
+    max_range_m: 7.0
+    single_tag_max_range_m: 3.0
+    max_rms_px: 2.0
+    max_ambiguity: 0.5
+    sigma0_m: 0.005
+    sigma_k: 0.0035
+    sigma_yaw0_deg: 0.2
+    sigma_min_dist_m: 0.5
+
+ekf:
+  ros__parameters:
+    frequency: 10.0
+    sensor_timeout: 0.2
+    two_d_mode: true
+    publish_tf: true
+    transform_time_offset: 0.0
+    map_frame: map
+    odom_frame: odom
+    base_link_frame: base_link
+    world_frame: map
+    dynamic_process_noise_covariance: true
+
+    odom0: /odom
+    odom0_config: [false, false, false, false, false, false, true,  true,  false, false, false, true,  false, false, false]
+    odom0_queue_size: 10
+
+    pose0: /localization/tag_pose
+    pose0_config: [true,  true,  false, false, false, true,  false, false, false, false, false, false, false, false, false]
+    pose0_queue_size: 10
+    pose0_rejection_threshold: 5.0
+
+    initial_estimate_covariance: [100.0, 0.0,   0.0,  0.0,  0.0,  0.0,   0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,
+                                  0.0,   100.0, 0.0,  0.0,  0.0,  0.0,   0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,
+                                  0.0,   0.0,   1.0e-9, 0.0,  0.0,  0.0,   0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,
+                                  0.0,   0.0,   0.0,  1.0e-9, 0.0,  0.0,   0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,
+                                  0.0,   0.0,   0.0,  0.0,  1.0e-9, 0.0,   0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,
+                                  0.0,   0.0,   0.0,  0.0,  0.0,  10.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,
+                                  0.0,   0.0,   0.0,  0.0,  0.0,  0.0,   1.0e-9, 0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,
+                                  0.0,   0.0,   0.0,  0.0,  0.0,  0.0,   0.0,  1.0e-9, 0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,
+                                  0.0,   0.0,   0.0,  0.0,  0.0,  0.0,   0.0,  0.0,  1.0e-9, 0.0,  0.0,  0.0,  0.0,  0.0,  0.0,
+                                  0.0,   0.0,   0.0,  0.0,  0.0,  0.0,   0.0,  0.0,  0.0,  1.0e-9, 0.0,  0.0,  0.0,  0.0,  0.0,
+                                  0.0,   0.0,   0.0,  0.0,  0.0,  0.0,   0.0,  0.0,  0.0,  0.0,  1.0e-9, 0.0,  0.0,  0.0,  0.0,
+                                  0.0,   0.0,   0.0,  0.0,  0.0,  0.0,   0.0,  0.0,  0.0,  0.0,  0.0,  1.0e-9, 0.0,  0.0,  0.0,
+                                  0.0,   0.0,   0.0,  0.0,  0.0,  0.0,   0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  1.0e-9, 0.0,  0.0,
+                                  0.0,   0.0,   0.0,  0.0,  0.0,  0.0,   0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  1.0e-9, 0.0,
+                                  0.0,   0.0,   0.0,  0.0,  0.0,  0.0,   0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  0.0,  1.0e-9]
+
+ekf_ground_truth:
+  ros__parameters:
+    odom1: /ground_truth/odom
+    odom1_config: [true,  true,  false, false, false, true,  false, false, false, false, false, false, false, false, false]
+    odom1_queue_size: 10
