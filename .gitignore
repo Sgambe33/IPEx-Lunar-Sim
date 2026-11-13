@@ -1,0 +1,17 @@
+_backup/
+_backup.zip
+*.bak_before_*
+
+/blender/
+
+ros2_workspace/build/
+ros2_workspace/install/
+ros2_workspace/log/
+ros2_workspace/src/build/
+ros2_workspace/src/install/
+ros2_workspace/src/log/
+
+__pycache__/
+.mypy_cache/
+
+/.vscode/
