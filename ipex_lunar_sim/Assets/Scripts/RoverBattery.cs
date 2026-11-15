@@ -86,7 +86,7 @@ public class RoverBattery : RosBehaviour
             batteryState.Soc = Soc;
             batteryState.Energy_wh = EnergyWh;
             batteryState.Capacity_wh = capacityWh;
-            batteryState.Power_out_wh = PowerOutW;
+            batteryState.Power_out_w = PowerOutW;
             batteryState.Docked = IsDocked;
             batteryState.Charging = IsCharging;
             batteryState.Consumed_wh = TotalConsumedWh;
