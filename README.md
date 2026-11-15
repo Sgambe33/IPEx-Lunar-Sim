@@ -8,6 +8,11 @@
 ![Scene overview](.github/readme_assets/scene_overview.png)
 
 This project simulates the autonomous operation of the IPEx rover in Unity with ROS2. The rover digs regolith from the surface, hauls it to a hopper and manages its state of charge.
+<center>
+    <video width="1920" height="720" style controls>
+      <source src=".github/readme_assets/demo_video_compressed.mp4" type="video/mp4">
+    </video>
+</center>
 
 The repository contains:
 - `ipex_lunar_sim`: the Unity project containing the virtual scene.
@@ -53,7 +58,12 @@ In Play mode, the rover can be controlled manually:
 | I / K | Raise / lower arms |
 
 > If you move anything in the scene other than the rover, run **IPEx Mission > Export Survey**. This generates a JSON file in the project folder: copy it into the `ros2_workspace/src/ipex_mission/config` directory, overwriting the existing one and then rebuild.
+
+> If built from "Build and run" or from "Build profiles" and you notice heavy frame rate drops or glitching textures after a while, that means there are system DLLs or libs that are overriding the game ones. On Windows this can be solved by running the game with empty PATH environment varialbe via `$env:PATH = "$env:SystemRoot\System32;$env:SystemRoot"; & 'C:\path\to\ipex_lunar_sim.exe'`.
+
 ## ROS2 Packages
+
+
 
 The `ipex_mission` package requires ROS2 (Jazzy distribution). Its dependencies are listed in `package.xml`. Running it on Linux is recommended, as installing the dependencies is easier there.
 
